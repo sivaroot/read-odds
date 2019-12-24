@@ -1,7 +1,7 @@
 <div>
   <mat-grid-list cols="1" rowHeight="40px">
     <mat-grid-tile>
-      <div class="close-btn" (click)="onNoClick()" style="position: absolute;left: 10px; top: 12px"></div>
+      <div class="close-btn" (click)="closeDialog()" style="position: absolute;left: 10px; top: 12px"></div>
     </mat-grid-tile>
   </mat-grid-list>
   <div *ngIf="isSearchPage">
@@ -131,6 +131,11 @@
 
           </tr>
           <tr>
+            <td>
+              <div *ngIf="saveError.isError" class="font-main font-large" style="font-size: 15px; height: 20px; color: #e34a56">
+                ({{saveError.status}}) {{saveError.message}}
+              </div>
+            </td>
             <td colspan="2">
               <button class="input input-btn" style="float: right;width: 150px;" (click)="saveBook()">Save</button>
             </td>

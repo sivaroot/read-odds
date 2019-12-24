@@ -30,6 +30,12 @@ export class CreateBookComponent {
     status: null
   };
 
+  saveError: any = {
+    isError: false,
+    message: 'Cannot save your book',
+    status: null
+  }
+
   isSearchPage: Boolean = true;
   constructor(
     public dialogRef: MatDialogRef<CreateBookComponent>,
@@ -42,9 +48,10 @@ export class CreateBookComponent {
 
   saveBook() {
     this.crudBookService.saveBook(this.bookData).subscribe(data => {
-      console.log('crudBookService', data)
+      this.closeDialog()
     },err => {
-      console.log('crudBookService err', err)
+      this.saveError.isError = true,
+      this.saveError.status = err.status
     });
   }
 
@@ -70,7 +77,7 @@ export class CreateBookComponent {
     this.bookData.description = bookInfo.description
   }
 
-  onNoClick(): void {
+  closeDialog(): void {
     this.dialogRef.close();
   }
 
