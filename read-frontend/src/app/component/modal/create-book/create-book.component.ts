@@ -1,6 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from "@angular/material";
 import { SearchBookService } from '../../../service/search-book.service'
+import { CrudBookService } from '../../../service/crud-book.service'
+
 @Component({
   selector: 'app-create-book',
   templateUrl: './create-book.component.html',
@@ -13,7 +15,7 @@ export class CreateBookComponent {
   bookData: any = {
     title: String,
     imgUrl: String,
-    authors: String,
+    authors: Array,
     publisher: String,
     isbn_13: String,
     isbn_10: String,
@@ -32,9 +34,18 @@ export class CreateBookComponent {
   constructor(
     public dialogRef: MatDialogRef<CreateBookComponent>,
     @Inject(MAT_DIALOG_DATA) data,
-    private searchBookService: SearchBookService) { }
+    private searchBookService: SearchBookService,
+    private crudBookService: CrudBookService) { }
 
   ngOnInit() {
+  }
+
+  saveBook() {
+    this.crudBookService.saveBook(this.bookData).subscribe(data => {
+      console.log('crudBookService', data)
+    },err => {
+      console.log('crudBookService err', err)
+    });
   }
 
   findBook() {
