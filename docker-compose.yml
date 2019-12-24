@@ -1,0 +1,14 @@
+version: '3'
+services: 
+  read_odds_database:
+    image: mongo:3.2.12
+    container_name: read_odds_database
+    environment: 
+      - MONGO_INITDB_DATABASE=read_odds_db
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin
+    ports: 
+      - "27017:27017"
+    volumes:
+      - ./database/data/db:/data/db
+      - ./database/config/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
