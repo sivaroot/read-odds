@@ -2,6 +2,8 @@ package com.microservice.createbook;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +23,7 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping()
-    public ResponseEntity<?> createBook(@RequestBody  BookModel bookBody) {
+    public ResponseEntity<?> createBook(@Valid @RequestBody  BookModel bookBody) {
         BookModel bookModel = bookService.createBook(bookBody);
         return ResponseEntity.status(HttpStatus.CREATED).body(bookModel);
     }
