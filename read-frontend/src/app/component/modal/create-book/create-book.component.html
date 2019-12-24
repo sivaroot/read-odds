@@ -1,0 +1,138 @@
+<div>
+  <mat-grid-list cols="1" rowHeight="40px">
+    <mat-grid-tile>
+      <div class="close-btn" (click)="onNoClick()" style="position: absolute;left: 10px; top: 12px"></div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div *ngIf="isSearchPage">
+    <mat-grid-list cols="2" rowHeight="370px">
+      <mat-grid-tile>
+        <table>
+          <tr>
+            <div class="font-main font-large">
+              Welcome to
+            </div>
+          </tr>
+          <tr>
+            <div class="font-main font-large">
+              Chamber
+            </div>
+          </tr>
+          <tr>
+            <div class="font-main font-large">
+              of Knowledge
+            </div>
+          </tr>
+        </table>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <table>
+          <tr>
+            <div class="font-main font-large" style="font-size: 20px; height: 20px">
+              ISBN
+            </div>
+          </tr>
+          <tr>
+            <td>
+              <input class="input input-detial" [(ngModel)]="isbn" style="width: 200px;">
+            </td>
+            <td>
+              <div class="input input-btn" (click)="findBook()">
+                <img src="./assets/icon/icons8-search-90.png" width="25px" height="25px">
+              </div>
+            </td>
+          </tr>
+          <tr *ngIf="searchError.isError">
+            <div class="font-main font-large" style="font-size: 15px; height: 20px; color: #e34a56">
+              {{searchError.message}}
+            </div>
+          </tr>
+        </table>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+  <div *ngIf="!isSearchPage">
+    <mat-grid-list cols="12" rowHeight="370px">
+      <mat-grid-tile [colspan]="4">
+        <div class="font-main font-book" style="width: 300px;">
+          {{bookData.title}}
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile [colspan]="3">
+        <img [matTooltip]="bookData.description" matTooltipPosition="after" src="{{bookData.imgUrl}}" style="width: 170px; height: 250px; border-radius: 5px;">
+      </mat-grid-tile>
+      <mat-grid-tile [colspan]="5">
+        <table>
+          <tr>
+            <td>
+              <div class="font-main font-small">
+                ISBN-10
+              </div>
+            </td>
+            <td>
+              <div class="font-main font-small">
+                ISBN-13
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input disabled [(ngModel)]="bookData.industryIdentifiers.isbn_10" class="input input-detial">
+            </td>
+            <td>
+              <input disabled [(ngModel)]="bookData.industryIdentifiers.isbn_13" class="input input-detial">
+            </td>
+          </tr>
+          <tr>
+            <div class="font-main font-small">
+              Title
+            </div>
+          </tr>
+          <tr>
+            <td>
+              <input disabled class="input input-detial" [(ngModel)]="bookData.title" value="The Sivaroot Book">
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <div class="font-main font-small">
+                Author
+              </div>
+            </td>
+            <td>
+              <div class="font-main font-small">
+                Publisher
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input disabled [(ngModel)]="bookData.authors" class="input input-detial" value="Sivaroot Chuncharoen">
+            </td>
+            <td>
+              <input disabled [(ngModel)]="bookData.publisher" class="input input-detial" value="CC">
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <div class="font-main font-small">
+                Categories
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2" style="padding-right: 40px;">
+              <mat-chip-list>
+                <mat-chip *ngFor="let tag of bookData.tags">{{tag}}</mat-chip>
+              </mat-chip-list>
+            </td>
+
+          </tr>
+        </table>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif; 
+    background-color: #48739b;
+
+}
+
+.background-secondary .mat-dialog-container {
+    background-color: #d8d8d8 !important;
+}
+
+.pa-0 .mat-dialog-container {
+    padding: 0 !important;
+}
+.border-radius .mat-dialog-container {
+   border-radius: 8px !important;
+}
+
+@font-face {
+    font-family: 'DBHelvethaicaMonX-65Med';
+    src: url("/assets/font/DBHelvethaicaMonX-65Med.ttf");
+}
+.font-main {
+    font-family: 'DBHelvethaicaMonX-65Med';
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+}
+.spacer {
+    flex: 1 1 auto;
+}
