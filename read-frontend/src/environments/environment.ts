@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  MICROSERVICE_SEARCH_BOOK_URL: '//localhost:3000'
+  MICROSERVICE_SEARCH_BOOK_URL: '//localhost:3000',
+  MICROSERVICE_CRUD_BOOK_URL: '//localhost:8080'
 };
 
 /*
